@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socket.IO Test</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #events { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; margin-bottom: 20px; }
+    input, button { padding: 5px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+
+<h2>Socket.IO Test Client</h2>
+
+<div id="events"></div>
+
+<label>Event Name:</label><br>
+<input type="text" id="eventName" placeholder="Event name"><br>
+
+<label>Data (JSON format):</label><br>
+<input type="text" id="eventData" placeholder='{"key":"value"}'><br>
+
+<button id="sendBtn">Send Event</button>
+
+<script>
+  const serverUrl = "http://localhost:3002"; // Replace with your server URL/port
+  const socket = io(serverUrl);
+
+  const eventsDiv = document.getElementById("events");
+
+  // Log messages to the events div
+  function logEvent(msg) {
+    const p = document.createElement("p");
+    p.textContent = msg;
+    eventsDiv.appendChild(p);
+    eventsDiv.scrollTop = eventsDiv.scrollHeight;
+  }
+
+  // Listen for all events
+  socket.onAny((event, data) => {
+    logEvent(`Received event: ${event} | Data: ${JSON.stringify(data)}`);
+  });
+
+  socket.on("connect", () => {
+    logEvent(`Connected! Socket ID: ${socket.id}`);
+  });
+
+  socket.on("disconnect", () => {
+    logEvent("Disconnected from server");
+  });
+
+  // Send event when button is clicked
+  document.getElementById("sendBtn").addEventListener("click", () => {
+    const eventName = document.getElementById("eventName").value;
+    let eventData = document.getElementById("eventData").value;
+    try {
+      eventData = eventData ? JSON.parse(eventData) : null;
+      socket.emit(eventName, eventData);
+      logEvent(`Sent event: ${eventName} | Data: ${JSON.stringify(eventData)}`);
+    } catch (err) {
+      alert("Invalid JSON data");
+    }
+  });
+</script>
+
+</body>
+</html>

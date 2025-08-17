@@ -30,7 +30,9 @@ export const createUser = async (req: Request, res: Response) => {
 export const getAllUser = async (req: Request, res: Response) => {
     try {
 
-        const users = await db.user.findMany();
+        const users = await db.user.findMany({
+            orderBy: { id: "desc" }
+        });
         res.json({ users });
 
     } catch (error) {
