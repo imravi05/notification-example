@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for handling notifications for demo app.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ketanip/noti-fication.git"
+  },
+  "author": "Ketan Iralepatil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ketanip/noti-fication/issues"
+  },
+  "homepage": "https://github.com/ketanip/noti-fication#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
