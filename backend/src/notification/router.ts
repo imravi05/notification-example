@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getAllNotifications, sendNotificationToAll, sendNotificationToOne } from "./controller";
+import { getAllNotifications, markAsRead, sendNotification } from "./controller";
 
 const router = Router();
 
 router.get("/", getAllNotifications);
-router.post("/", sendNotificationToAll);
-router.post("/:id", sendNotificationToOne);
+router.post("/", sendNotification);
+router.post("/:id", markAsRead);
 
 export default router;

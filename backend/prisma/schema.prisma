@@ -17,11 +17,21 @@ datasource db {
 model User {
   id       Int    @id @default(autoincrement())
   name     String
-  fcmToken String @unique
+  email    String
+  password String
+  country  String
+  gender   String
+}
+
+enum NotificationType {
+  normal
+  form
 }
 
 model Notifications {
-  id          Int    @id @default(autoincrement())
+  id          Int              @id @default(autoincrement())
   title       String
   description String
+  type        NotificationType
+  read        Boolean          @default(false)
 }

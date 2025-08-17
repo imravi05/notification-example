@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Backend for handling notifications for demo app.",
   "main": "./dist/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc"
   },
   "repository": {
@@ -21,16 +22,20 @@
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.3",
     "@types/node": "^24.3.0",
+    "@types/socket.io": "^3.0.1",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2"
   },
   "dependencies": {
     "@prisma/client": "^6.14.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "firebase-admin": "^13.4.0",
-    "zod": "^4.0.17",
+    "socket.io": "^4.8.1",
+    "zod": "3.25.40",
     "zod-validation-error": "^4.0.1"
   }
 }

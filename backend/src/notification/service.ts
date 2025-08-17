@@ -1,39 +1,13 @@
-import admin from "#pkg/firebase";
+import { db } from "#pkg/db";
 
-export const sendNotificationMulticast = async (title: string, description: string, targets: string[]) => {
-
+export const markNotificationAsRead = async (id: number) => {
     try {
-
-        const resp = await admin.messaging().sendEachForMulticast({
-            notification: {
-                title,
-                body: description,
-            },
-            tokens: targets
+        await db.notifications.update({
+            where: { id },
+            data: { read: true }
         });
-
-        return resp;
-
     } catch (error) {
-        throw new Error("Failed to send notifications.");
+        console.log(error)
+        throw new Error("Failed to mark as read.");
     }
-
-}
-
-export const sendNotification = async (title: string, description: string, target: string) => {
-
-    try {
-
-        await admin.messaging().send({
-            notification: {
-                title,
-                body: description,
-            },
-            token: target
-        });
-
-    } catch (error) {
-        throw new Error("Failed to send notifications.");
-    }
-
 }

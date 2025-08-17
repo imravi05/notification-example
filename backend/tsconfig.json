@@ -8,9 +8,8 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "strict": true,
-
+    
     /* Modules */
-    "noUncheckedSideEffectImports": true,
     "module": "esnext",              
     "moduleResolution": "node",      
     "paths": {
@@ -24,11 +23,7 @@
     "outDir": "./dist",
     "sourceMap": true,
 
-    /* Interop Constraints */
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
+    "allowSyntheticDefaultImports": true,
 
     /* Language and Environment */
     "target": "ES2017",
@@ -38,9 +33,6 @@
 
     /* Completeness */
     "skipLibCheck": true,
-
-    /* JSON */
-    "resolveJsonModule": true
     
   },
   "include": ["src/**/*"],
